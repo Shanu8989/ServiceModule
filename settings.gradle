@@ -13,4 +13,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ServiceModule"
-include ':app'
+include ':dataServiceModule'
