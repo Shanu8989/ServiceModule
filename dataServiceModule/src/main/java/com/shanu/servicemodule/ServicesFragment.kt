@@ -20,6 +20,12 @@ class ServicesFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+    private lateinit var servicesModuleDataCallback: () -> Unit
+
+    fun registerServicesModuleDataCallback(dataCallback: () -> Unit) {
+        servicesModuleDataCallback = dataCallback
+    }
+
     override fun onDestroy() {
         super.onDestroy()
     }
@@ -36,7 +42,7 @@ class ServicesFragment : Fragment() {
             override fun handleOnBackPressed() {
                 /*val intent = Intent(activity, LoginActivity::class.java)
                 startActivity(intent)
-                activity?.finish()*/
+                activity?.finish()
                 Intent(
                     requireActivity(),
                     Class.forName("com.shanu.nmsuperapp.presentation.activity.LoginActivity")
@@ -44,7 +50,8 @@ class ServicesFragment : Fragment() {
                     startActivity(this)
                 }.also {
                     activity?.finish()
-                }
+                }*/
+                servicesModuleDataCallback.invoke()
             }
         })
     }
